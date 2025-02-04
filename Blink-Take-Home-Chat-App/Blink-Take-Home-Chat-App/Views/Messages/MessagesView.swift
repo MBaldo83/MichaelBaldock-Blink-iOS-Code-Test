@@ -35,6 +35,6 @@ struct MessagesView: View {
             }
             .padding()
         }
-        .navigationTitle(viewModel.conversation.name)
+        .navigationTitle(viewModel.conversationTitle)
     }
 }

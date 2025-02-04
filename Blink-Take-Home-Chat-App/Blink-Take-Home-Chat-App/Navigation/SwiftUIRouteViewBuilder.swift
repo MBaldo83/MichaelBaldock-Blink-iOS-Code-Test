@@ -15,10 +15,10 @@ class SwiftUIRouteViewBuilder {
         case .messages(let conversation):
             MessagesView(
                 viewModel: MessagesViewModel(
-                    conversation: conversation,
                     messagesRepository: self.factory.messagesRepository(
                         conversation: conversation
-                    )
+                    ),
+                    conversationTitle: conversation.name
                 )
             )
         }

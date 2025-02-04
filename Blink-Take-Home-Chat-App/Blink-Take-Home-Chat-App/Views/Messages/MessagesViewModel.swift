@@ -3,16 +3,17 @@ import Foundation
 
 class MessagesViewModel: ObservableObject {
     @Published var messages: [Message] = []
-    let conversation: Conversation
+    @Published var conversationTitle: String
     private var cancellables = Set<AnyCancellable>()
     
     // Now using the dedicated messages repository.
     private let messagesRepository: MessagesRepository
     
-    init(conversation: Conversation,
-         messagesRepository: MessagesRepository) {
-        self.conversation = conversation
+    init(messagesRepository: MessagesRepository,
+         conversationTitle: String) {
+        
         self.messagesRepository = messagesRepository
+        self.conversationTitle = conversationTitle
         
         messagesRepository.messagesPublisher
             .map { messages in
