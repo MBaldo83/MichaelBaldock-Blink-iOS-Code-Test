@@ -9,12 +9,14 @@ protocol MessagesRepository {
     func addMessage(_ message: Message)
 }
 
-class ConversationUpdatingMessagesRepository: MessagesRepository {
+final class ConversationUpdatingMessagesRepository: MessagesRepository {
+    
     // The conversation we are working with.
     private var conversation: Conversation
     private let messagesSubject: CurrentValueSubject<[Message], Never>
     
-    // This closure is called when the conversation is updated (for example, after a new message is added).
+    // This closure is called when the conversation is updated
+    // (for example, after a new message is added).
     private let onConversationUpdate: (Conversation) -> Void
     
     var messagesPublisher: AnyPublisher<[Message], Never> {
@@ -32,15 +34,22 @@ class ConversationUpdatingMessagesRepository: MessagesRepository {
     }
     
     func addMessage(_ message: Message) {
-        // Append the new message.
+        
+        /*
+         TODO: We could split this into 2 classes:
+         1 - To send the new messages to the subject
+         2 - To call onConversationUpdate(conversation)
+         */
+        
+        // Append the new message and update date
         conversation.messages.append(message)
-        // Optionally update the conversation's metadata.
         conversation.lastUpdated = message.lastUpdated
         
         // Send the updated messages to subscribers.
         messagesSubject.send(conversation.messages)
         
-        // Notify the conversation repository (or any other listener) that the conversation has been updated.
+        // Notify the conversation repository (or any other listener)
+        // that the conversation has been updated.
         onConversationUpdate(conversation)
     }
 }

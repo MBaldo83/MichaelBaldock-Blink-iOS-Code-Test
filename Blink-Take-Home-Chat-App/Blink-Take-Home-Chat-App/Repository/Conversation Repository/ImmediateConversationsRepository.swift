@@ -9,11 +9,7 @@ protocol ConversationsRepository {
     func updateConversation(_ conversation: Conversation)
 }
 
-
-class DeviceStorageConversationsRepository: ConversationsRepository {
-    
-    // Currently we use a CurrentValueSubject, but this could change to be a PassThroughSubject
-    // If we call a network API and use the response to change the value
+final class ImmediateConversationsRepository: ConversationsRepository {
     private let conversationsSubject: CurrentValueSubject<[Conversation], Never>
     
     var conversationsPublisher: AnyPublisher<[Conversation], Never> {

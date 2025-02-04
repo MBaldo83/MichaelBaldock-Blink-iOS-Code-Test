@@ -1,16 +1,29 @@
 import Foundation
 
-class RepositoriesFactory {
+final class RepositoriesFactory {
     
-    private let deviceStorageConversations = DeviceStorageConversationsRepository(
-        initialChats: DebugDataSeed.loadInitialConversations()
-    )
+    private lazy var sharedConversationsRepository = {
+        
+        // Base Publisher provides immediate subject for UI
+        let base = ImmediateConversationsRepository(
+            initialChats: DebugDataSeed.loadInitialConversations()
+        )
+        
+        // Wrap with the disk-saving behavior.
+        let withDisk = DiskSavingConversationsRepositoryDecorator(
+            wrapping: base
+        )
+        
+        // Wrap that with the API-updating behavior.
+        let withAPI = APIUpdatingConversationsRepositoryDecorator(
+            wrapping: withDisk
+        )
+        
+        return withAPI
+    }()
     
     func conversationsRepository() -> ConversationsRepository {
-        
-        // This is where we could extend the functionality of the Conversations Repository
-        // for example by decorating it with network capabilities
-        deviceStorageConversations
+        sharedConversationsRepository
     }
     
     func messagesRepository(conversation: Conversation) -> MessagesRepository {

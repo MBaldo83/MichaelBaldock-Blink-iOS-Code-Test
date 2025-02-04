@@ -1,7 +1,7 @@
 import SwiftUI
 
 @MainActor
-class SwiftUIRouteViewBuilder {
+final class SwiftUIRouteViewBuilder {
     
     let factory: RepositoriesFactory
     
