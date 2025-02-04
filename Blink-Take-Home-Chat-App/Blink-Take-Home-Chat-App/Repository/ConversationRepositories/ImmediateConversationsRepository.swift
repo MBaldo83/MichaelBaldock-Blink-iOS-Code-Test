@@ -2,22 +2,36 @@ import Foundation
 import Combine
 
 protocol ConversationsRepository {
+    
     /// A publisher that emits the current list of conversations.
     var conversationsPublisher: AnyPublisher<[Conversation], Never> { get }
     
     /// Called when a conversation is updated (for example, when a new message is added).
     func updateConversation(_ conversation: Conversation)
+    
+    /// This is needed for wrapped implementations to have a mechanism to update the Subject (source of truth)
+    var conversations: [Conversation] { get set }
 }
 
 final class ImmediateConversationsRepository: ConversationsRepository {
+    
     private let conversationsSubject: CurrentValueSubject<[Conversation], Never>
+    
+    init() {
+        conversationsSubject = CurrentValueSubject<[Conversation], Never>([])
+    }
+    
+    var conversations: [Conversation] {
+        get {
+            conversationsSubject.value
+        }
+        set {
+            conversationsSubject.send(newValue)
+        }
+    }
     
     var conversationsPublisher: AnyPublisher<[Conversation], Never> {
         conversationsSubject.eraseToAnyPublisher()
-    }
-    
-    init(initialChats: [Conversation]) {
-        conversationsSubject = CurrentValueSubject<[Conversation], Never>(initialChats)
     }
     
     // Called by the ConversationUpdatingMessagesRepository to update a
@@ -30,25 +44,3 @@ final class ImmediateConversationsRepository: ConversationsRepository {
         }
     }
 }
-
-extension ConversationResponse {
-    func mapToDomain() -> Conversation {
-        Conversation(
-            id: id,
-            name: name,
-            lastUpdated: lastUpdated,
-            messages: messages.map { $0.mapToDomain() }
-        )
-    }
-}
-
-extension MessageResponse {
-    func mapToDomain() -> Message {
-        Message(
-            id: id,
-            text: text,
-            lastUpdated: lastUpdated
-        )
-    }
-}
-

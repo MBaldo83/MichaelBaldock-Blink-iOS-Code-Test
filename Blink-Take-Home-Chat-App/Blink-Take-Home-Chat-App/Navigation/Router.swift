@@ -2,7 +2,7 @@ import SwiftUI
 
 @MainActor
 @Observable
-public final class Router {
+final class Router {
     
     enum Route: Hashable {
         case messages(conversation: Conversation)

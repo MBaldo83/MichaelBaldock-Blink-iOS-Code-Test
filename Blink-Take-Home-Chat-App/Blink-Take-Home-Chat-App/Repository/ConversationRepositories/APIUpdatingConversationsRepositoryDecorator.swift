@@ -2,10 +2,20 @@ import Foundation
 import Combine
 
 final class APIUpdatingConversationsRepositoryDecorator: ConversationsRepository {
-    private let wrapped: ConversationsRepository
+    
+    private var wrapped: ConversationsRepository
     
     init(wrapping wrapped: ConversationsRepository) {
         self.wrapped = wrapped
+    }
+    
+    var conversations: [Conversation] {
+        get {
+            wrapped.conversations
+        }
+        set {
+            wrapped.conversations = newValue
+        }
     }
     
     var conversationsPublisher: AnyPublisher<[Conversation], Never> {
@@ -21,8 +31,8 @@ final class APIUpdatingConversationsRepositoryDecorator: ConversationsRepository
     }
     
     private func updateOnServer(_ conversation: Conversation) {
-        // Implement your API call logic here.
-        // Optionally, when the API responds, you can update the conversation (if the response contains changes).
+        // Because this is all based on Combine, it should be convenient
+        // to make a Websocket API connection that can publish new values at any time.
         print("Updating conversation \(conversation.id) on server")
     }
 }

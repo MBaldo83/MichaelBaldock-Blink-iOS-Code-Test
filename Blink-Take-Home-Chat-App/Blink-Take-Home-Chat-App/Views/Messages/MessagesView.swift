@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MessagesView: View {
-    @StateObject var viewModel: MessagesViewModel
+    @State var viewModel: MessagesViewModel
     @State private var replyText: String = ""
     
     var body: some View {
@@ -10,7 +10,7 @@ struct MessagesView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(message.text)
                         .font(.body)
-                    Text("\(message.lastUpdated, formatter: dateFormatter)")
+                    Text("\(viewModel.format(message.lastUpdated))")
                         .font(.caption)
                         .foregroundColor(.gray)
                 }

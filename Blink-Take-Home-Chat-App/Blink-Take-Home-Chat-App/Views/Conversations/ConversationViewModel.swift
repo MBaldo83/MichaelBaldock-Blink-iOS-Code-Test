@@ -1,12 +1,14 @@
 import Combine
 import Foundation
+import SwiftUI
 
-final class ConversationsViewModel: ObservableObject {
-    @Published var conversations: [Conversation] = []
+@Observable
+final class ConversationsViewModel {
+    var conversations: [Conversation] = []
     private var cancellables = Set<AnyCancellable>()
     
-    // Exposing the repository in case it is needed for navigation.
-    let repository: ConversationsRepository
+    // Exposing the repository for tests, but not for observation
+    @ObservationIgnored let repository: ConversationsRepository
     
     init(repository: ConversationsRepository) {
         self.repository = repository
@@ -18,6 +20,13 @@ final class ConversationsViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .assign(to: \.conversations, on: self)
             .store(in: &cancellables)
+    }
+    
+    func format(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        return formatter.string(from: date)
     }
 }
 

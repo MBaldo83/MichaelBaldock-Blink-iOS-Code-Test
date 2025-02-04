@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ConversationsView: View {
-    @StateObject var viewModel: ConversationsViewModel
+    @State var viewModel: ConversationsViewModel
     @State var router: Router
     
     var body: some View {
@@ -13,7 +13,7 @@ struct ConversationsView: View {
                     VStack(alignment: .leading) {
                         Text(conversation.name)
                             .font(.headline)
-                        Text("Last updated: \(conversation.lastUpdated, formatter: dateFormatter)")
+                        Text("Last updated: \(viewModel.format(conversation.lastUpdated))")
                             .font(.subheadline)
                             .foregroundColor(.gray)
                     }
@@ -27,10 +27,3 @@ struct ConversationsView: View {
     }
 }
 
-// Define a simple date formatter.
-let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .short
-    return formatter
-}()

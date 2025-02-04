@@ -5,12 +5,11 @@ final class RepositoriesFactory {
     private lazy var sharedConversationsRepository = {
         
         // Base Publisher provides immediate subject for UI
-        let base = ImmediateConversationsRepository(
-            initialChats: DebugDataSeed.loadInitialConversations()
-        )
+        let base = ImmediateConversationsRepository()
         
         // Wrap with the disk-saving behavior.
         let withDisk = DiskSavingConversationsRepositoryDecorator(
+            initialChats: DebugDataSeed.loadInitialConversations(),
             wrapping: base
         )
         
@@ -28,13 +27,12 @@ final class RepositoriesFactory {
     
     func messagesRepository(conversation: Conversation) -> MessagesRepository {
         // This is where we could extend the functionality of the Messages Repository
+        // decorating it like we have done the conversationsRepository
         return ConversationUpdatingMessagesRepository(
             conversation: conversation,
             // Pass in a closure so that when the conversation is updated,
             // the ConversationsRepository is notified.
-            onConversationUpdate: { updatedConversation in
-                self.conversationsRepository().updateConversation(updatedConversation)
-            }
+            onConversationUpdate: conversationsRepository().updateConversation
         )
     }
 }

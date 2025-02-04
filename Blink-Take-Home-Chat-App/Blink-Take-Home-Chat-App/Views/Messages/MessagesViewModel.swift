@@ -1,13 +1,13 @@
 import Combine
 import Foundation
+import SwiftUI
 
-final class MessagesViewModel: ObservableObject {
-    @Published var messages: [Message] = []
-    @Published var conversationTitle: String
+@Observable
+final class MessagesViewModel {
+    var messages: [Message] = []
+    var conversationTitle: String
     private var cancellables = Set<AnyCancellable>()
-    
-    // Now using the dedicated messages repository.
-    private let messagesRepository: MessagesRepository
+    @ObservationIgnored let messagesRepository: MessagesRepository
     
     init(messagesRepository: MessagesRepository,
          conversationTitle: String) {
@@ -32,5 +32,12 @@ final class MessagesViewModel: ObservableObject {
             lastUpdated: Date()
         )
         messagesRepository.addMessage(newMessage)
+    }
+    
+    func format(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        return formatter.string(from: date)
     }
 }
