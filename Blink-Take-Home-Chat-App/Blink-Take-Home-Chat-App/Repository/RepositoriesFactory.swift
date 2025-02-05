@@ -1,6 +1,6 @@
 import Foundation
 
-final class RepositoriesFactory {
+class RepositoriesFactory {
     
     private lazy var sharedConversationsRepository = {
         
