@@ -30,7 +30,7 @@ Requirements: https://joinblink.notion.site/iOS-Code-Test-35bd49afbf954e8b805794
   * SwiftUIRouteViewBuilder - to return the view, injecting the dependencies required by the view model
 ## Dependencies
 * I have made a simple RepositoriesFactory to manage the dependencies required by the view models.
-* In inject a closure to the view builder that is implemented using the factory to return the dependency required
+* I inject a closure to the view builder that is implemented using the factory to return the dependency required
   * Note: When you add a message in the Messages view, I wanted to implement a mechanism to update the Conversations (root) view. So there is a requirement to have a single conversations repository that is shared with messages.
 
 
@@ -39,5 +39,5 @@ Requirements: https://joinblink.notion.site/iOS-Code-Test-35bd49afbf954e8b805794
 * I have only done a few unit tests covering an example of how to test in different layers. More test coverage would be needed for production code
 * Some refactoring of the testing functionality would be needed to work easily with the combine publisher implementations
 * As instructed on the requirements, I have not done any work making the UI look and feel like a Chat App, instead I focussed on the separation of concerns in the architecture.
-* Since I haven't worked on the UI, I haven't setup XCode previews, some view refacoring would be needed to easily generate previews of the views
+* Since I haven't worked on the UI, I haven't setup XCode previews, some view refactoring would be needed to easily generate previews of the views
 * I wanted to have a demo publishing of new messages to the messages view to make use of the reactive data stack, but ran out of time.
