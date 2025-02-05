@@ -14,19 +14,11 @@
 			remoteGlobalIDString = 1AF771C12D511C3400193A68;
 			remoteInfo = "Blink-Take-Home-Chat-App";
 		};
-		1AF771DD2D511C3500193A68 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1AF771BA2D511C3400193A68 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1AF771C12D511C3400193A68;
-			remoteInfo = "Blink-Take-Home-Chat-App";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1AF771C22D511C3400193A68 /* Blink-Take-Home-Chat-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Blink-Take-Home-Chat-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AF771D22D511C3500193A68 /* Blink-Take-Home-Chat-AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Blink-Take-Home-Chat-AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1AF771DC2D511C3500193A68 /* Blink-Take-Home-Chat-AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Blink-Take-Home-Chat-AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -38,11 +30,6 @@
 		1AF771D52D511C3500193A68 /* Blink-Take-Home-Chat-AppTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Blink-Take-Home-Chat-AppTests";
-			sourceTree = "<group>";
-		};
-		1AF771DF2D511C3500193A68 /* Blink-Take-Home-Chat-AppUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Blink-Take-Home-Chat-AppUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -62,13 +49,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1AF771D92D511C3500193A68 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -77,7 +57,6 @@
 			children = (
 				1AF771C42D511C3400193A68 /* Blink-Take-Home-Chat-App */,
 				1AF771D52D511C3500193A68 /* Blink-Take-Home-Chat-AppTests */,
-				1AF771DF2D511C3500193A68 /* Blink-Take-Home-Chat-AppUITests */,
 				1AF771C32D511C3400193A68 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,7 +66,6 @@
 			children = (
 				1AF771C22D511C3400193A68 /* Blink-Take-Home-Chat-App.app */,
 				1AF771D22D511C3500193A68 /* Blink-Take-Home-Chat-AppTests.xctest */,
-				1AF771DC2D511C3500193A68 /* Blink-Take-Home-Chat-AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,29 +118,6 @@
 			productReference = 1AF771D22D511C3500193A68 /* Blink-Take-Home-Chat-AppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		1AF771DB2D511C3500193A68 /* Blink-Take-Home-Chat-AppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1AF771EC2D511C3500193A68 /* Build configuration list for PBXNativeTarget "Blink-Take-Home-Chat-AppUITests" */;
-			buildPhases = (
-				1AF771D82D511C3500193A68 /* Sources */,
-				1AF771D92D511C3500193A68 /* Frameworks */,
-				1AF771DA2D511C3500193A68 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1AF771DE2D511C3500193A68 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				1AF771DF2D511C3500193A68 /* Blink-Take-Home-Chat-AppUITests */,
-			);
-			name = "Blink-Take-Home-Chat-AppUITests";
-			packageProductDependencies = (
-			);
-			productName = "Blink-Take-Home-Chat-AppUITests";
-			productReference = 1AF771DC2D511C3500193A68 /* Blink-Take-Home-Chat-AppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -177,10 +132,6 @@
 						CreatedOnToolsVersion = 16.0;
 					};
 					1AF771D12D511C3500193A68 = {
-						CreatedOnToolsVersion = 16.0;
-						TestTargetID = 1AF771C12D511C3400193A68;
-					};
-					1AF771DB2D511C3500193A68 = {
 						CreatedOnToolsVersion = 16.0;
 						TestTargetID = 1AF771C12D511C3400193A68;
 					};
@@ -202,7 +153,6 @@
 			targets = (
 				1AF771C12D511C3400193A68 /* Blink-Take-Home-Chat-App */,
 				1AF771D12D511C3500193A68 /* Blink-Take-Home-Chat-AppTests */,
-				1AF771DB2D511C3500193A68 /* Blink-Take-Home-Chat-AppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -216,13 +166,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1AF771D02D511C3500193A68 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1AF771DA2D511C3500193A68 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -246,13 +189,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1AF771D82D511C3500193A68 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -260,11 +196,6 @@
 			isa = PBXTargetDependency;
 			target = 1AF771C12D511C3400193A68 /* Blink-Take-Home-Chat-App */;
 			targetProxy = 1AF771D32D511C3500193A68 /* PBXContainerItemProxy */;
-		};
-		1AF771DE2D511C3500193A68 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1AF771C12D511C3400193A68 /* Blink-Take-Home-Chat-App */;
-			targetProxy = 1AF771DD2D511C3500193A68 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -480,38 +411,6 @@
 			};
 			name = Release;
 		};
-		1AF771ED2D511C3500193A68 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "double.dot.development.Blink-Take-Home-Chat-AppUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Blink-Take-Home-Chat-App";
-			};
-			name = Debug;
-		};
-		1AF771EE2D511C3500193A68 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "double.dot.development.Blink-Take-Home-Chat-AppUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Blink-Take-Home-Chat-App";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -538,15 +437,6 @@
 			buildConfigurations = (
 				1AF771EA2D511C3500193A68 /* Debug */,
 				1AF771EB2D511C3500193A68 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1AF771EC2D511C3500193A68 /* Build configuration list for PBXNativeTarget "Blink-Take-Home-Chat-AppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1AF771ED2D511C3500193A68 /* Debug */,
-				1AF771EE2D511C3500193A68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
