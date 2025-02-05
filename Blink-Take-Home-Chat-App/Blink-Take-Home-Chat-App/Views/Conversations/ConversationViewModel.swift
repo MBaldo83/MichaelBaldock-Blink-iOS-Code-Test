@@ -2,13 +2,12 @@ import Combine
 import Foundation
 import SwiftUI
 
-@Observable
-final class ConversationsViewModel {
-    var conversations: [Conversation] = []
-    private var cancellables = Set<AnyCancellable>()
+final class ConversationsViewModel: ObservableObject {
     
-    // Exposing the repository for tests, but not for observation
-    @ObservationIgnored let repository: ConversationsRepository
+    @Published var conversations: [Conversation] = []
+    
+    private var cancellables = Set<AnyCancellable>()
+    let repository: ConversationsRepository
     
     init(repository: ConversationsRepository) {
         self.repository = repository

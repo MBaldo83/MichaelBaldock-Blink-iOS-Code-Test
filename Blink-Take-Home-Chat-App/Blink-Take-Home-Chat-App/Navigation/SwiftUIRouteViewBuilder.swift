@@ -3,20 +3,20 @@ import SwiftUI
 @MainActor
 final class SwiftUIRouteViewBuilder {
     
-    let factory: RepositoriesFactory
+    let messagesRepository: (Conversation) -> MessagesRepository
     
-    init(factory: RepositoriesFactory) {
-        self.factory = factory
+    init(messagesRepository: @escaping (Conversation) -> MessagesRepository) {
+        self.messagesRepository = messagesRepository
     }
     
-    @ViewBuilder func view(for route: Router.Route) -> some View {
+    func view(for route: Router.Route) -> some View {
         
         switch route {
         case .messages(let conversation):
             MessagesView(
                 viewModel: MessagesViewModel(
-                    messagesRepository: self.factory.messagesRepository(
-                        conversation: conversation
+                    messagesRepository: self.messagesRepository(
+                        conversation
                     ),
                     conversationTitle: conversation.name
                 )

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ConversationsView: View {
     
-    @State var viewModel: ConversationsViewModel
+    @StateObject var viewModel: ConversationsViewModel
     @State var router: Router
     
     var body: some View {

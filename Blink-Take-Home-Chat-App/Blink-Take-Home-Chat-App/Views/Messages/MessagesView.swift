@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MessagesView: View {
-    @State var viewModel: MessagesViewModel
+    @StateObject var viewModel: MessagesViewModel
     @State private var replyText: String = ""
     
     var body: some View {

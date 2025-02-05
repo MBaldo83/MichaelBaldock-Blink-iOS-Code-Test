@@ -3,7 +3,7 @@ import Combine
 
 final class APIUpdatingConversationsRepositoryDecorator: ConversationsRepository {
     
-    private var wrapped: ConversationsRepository
+    var wrapped: ConversationsRepository
     
     init(wrapping wrapped: ConversationsRepository) {
         self.wrapped = wrapped

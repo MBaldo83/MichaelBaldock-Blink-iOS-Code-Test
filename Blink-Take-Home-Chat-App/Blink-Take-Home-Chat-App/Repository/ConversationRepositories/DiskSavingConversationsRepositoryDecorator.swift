@@ -3,7 +3,7 @@ import Combine
 
 final class DiskSavingConversationsRepositoryDecorator: ConversationsRepository {
     
-    private var wrapped: ConversationsRepository
+    var wrapped: ConversationsRepository
     private let fileName = "conversations"
     
     init(

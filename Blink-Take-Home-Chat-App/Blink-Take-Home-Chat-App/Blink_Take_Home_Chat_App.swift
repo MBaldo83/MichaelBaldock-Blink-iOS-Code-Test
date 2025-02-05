@@ -13,7 +13,7 @@ struct Blink_Take_Home_Chat_App: App {
                 ),
                 router: Router(
                     routeViewBuilder: SwiftUIRouteViewBuilder(
-                        factory: repositoryFactory
+                        messagesRepository: repositoryFactory.messagesRepository(conversation:)
                     )
                 )
             )

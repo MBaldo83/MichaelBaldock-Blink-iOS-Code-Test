@@ -2,12 +2,13 @@ import Combine
 import Foundation
 import SwiftUI
 
-@Observable
-final class MessagesViewModel {
-    var messages: [Message] = []
-    var conversationTitle: String
+final class MessagesViewModel: ObservableObject {
+    
+    @Published var messages: [Message] = []
+    @Published var conversationTitle: String
+    
     private var cancellables = Set<AnyCancellable>()
-    @ObservationIgnored let messagesRepository: MessagesRepository
+    let messagesRepository: MessagesRepository
     
     init(messagesRepository: MessagesRepository,
          conversationTitle: String) {
