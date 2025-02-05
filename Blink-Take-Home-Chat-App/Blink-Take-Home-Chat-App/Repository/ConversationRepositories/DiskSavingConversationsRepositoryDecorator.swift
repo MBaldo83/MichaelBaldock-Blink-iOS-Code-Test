@@ -11,12 +11,8 @@ final class DiskSavingConversationsRepositoryDecorator: ConversationsRepository 
         wrapping wrapped: ConversationsRepository
     ) {
         self.wrapped = wrapped
-        
-        guard let loaded = loadFromDisk() else {
-            conversations = initialChats
-            return
-        }
-        conversations = loaded
+        conversations = []
+        backgroundLoadFromDisk(replaceNullWith: initialChats)
     }
     
     var conversations: [Conversation] {
@@ -37,29 +33,41 @@ final class DiskSavingConversationsRepositoryDecorator: ConversationsRepository 
         wrapped.updateConversation(conversation)
         
         // Then, perform disk saving.
-        saveToDisk(conversations)
+        backgroundSaveToDisk(conversations)
     }
 
+    private func backgroundSaveToDisk(_ conversations: [Conversation]) {
+        
+        Task.detached(priority: .background) { [weak self] in
+            
+            guard let self = self else { return }
+            
+            // Convert Conversation to ConversationResponse.
+            let conversationsEncodable = conversations.map { $0.mapToCodable() }
+            
+            // Encode to JSON.
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            
+            do {
+                let jsonData = try encoder.encode(conversationsEncodable)
+                let fileURL = self.getFileURL(for: self.fileName)
+                try jsonData.write(to: fileURL)
+                print("Successfully saved conversations to disk at \(fileURL.path)")
+            } catch {
+                print("Error saving conversations to disk: \(error)")
+            }
+        }
+    }
     
-    
-    private func saveToDisk(_ conversations: [Conversation]) {
-        // Convert Conversation to ConversationResponse.
-        // Adjust the conversion below as needed depending on the properties of your Conversation type.
-        
-        let conversationsEncodable = conversations.map { $0.mapToCodable() }
-        
-        // Encode to JSON.
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601  // Use ISO8601 for date encoding. Adjust if necessary.
-        
-        do {
-            let jsonData = try encoder.encode(conversationsEncodable)
-            // Determine file URL in the documents directory.
-            let fileURL = getFileURL(for: fileName)
-            try jsonData.write(to: fileURL)
-            print("Successfully saved conversations to disk at \(fileURL.path)")
-        } catch {
-            print("Error saving conversations to disk: \(error)")
+    private func backgroundLoadFromDisk(replaceNullWith initial: [Conversation]) {
+        Task.detached(priority: .background) { [weak self] in
+            guard let self = self else { return }
+            guard let loaded = self.loadFromDisk() else {
+                self.conversations = initial
+                return
+            }
+            self.conversations = loaded
         }
     }
     
